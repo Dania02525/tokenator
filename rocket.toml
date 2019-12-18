@@ -1,0 +1,18 @@
+[development]
+address = "localhost"
+port = 8000
+log = "normal"
+limits = { forms = 32768 }
+databases = { platform_merchant_identity = { url = "mysql://root@127.0.0.1/platform_merchant_identity" } }
+
+[staging]
+address = "0.0.0.0"
+port = 80
+log = "normal"
+limits = { forms = 32768 }
+
+[production]
+address = "0.0.0.0"
+port = 80
+log = "critical"
+limits = { forms = 32768 }
