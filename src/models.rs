@@ -17,7 +17,7 @@ pub struct Credentials {
 pub struct Token {
   pub created_at: String,
   pub modified_at: String,
-  pub token_id: String,
+  pub token_id: u64,
   pub expires_at: String,
   pub scope: String,
   pub token_type: String,

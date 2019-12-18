@@ -7,6 +7,7 @@ use crate::DbConn;
 use ring::{digest, pbkdf2};
 use crate::byteorder::ByteOrder;
 use byteorder::BigEndian;
+use chrono::prelude::*;
 
 pub fn validate_credentials(credentials: Credentials, conn: DbConn) -> Result<Token, NotFoundError> {
   use crate::schema::users::dsl::*;
@@ -31,10 +32,12 @@ pub fn validate_credentials(credentials: Credentials, conn: DbConn) -> Result<To
 }
 
 fn create_oauth_token() -> Token {
+  let druuid = crate::druuid::gen_druuid(Utc::now());
+
   Token {
-    created_at: String::from("string"),
-    modified_at: String::from("string"),
-    token_id: String::from("string"),
+    created_at: Utc::now().to_string(),
+    modified_at: Utc::now().to_string(),
+    token_id: druuid,
     expires_at: String::from("string"),
     scope: String::from("string"),
     token_type: String::from("string"),
@@ -44,6 +47,6 @@ fn create_oauth_token() -> Token {
     grant_type: String::from("string"),
     recurly_admin: false,
     time_delta: String::from("string"),
-    updated_at: String::from("string")
+    updated_at: Utc::now().to_string()
   }
 }
